@@ -1,0 +1,1 @@
+A two-bit computer has the issue that a CPU cycle can only deal with two bit chunks at a time. But to do, say, addition over thirty-two bits is possible. It just requires multiple cycles, likely sixteen or so in this case.

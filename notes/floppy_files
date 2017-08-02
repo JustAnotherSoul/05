@@ -1,0 +1,9 @@
+nasm [name].asm
+mv [name] [name].flp 
+Or one could just tell it to output as a .flp file
+
+Multiple files on one 'floppy':
+
+nasm [name1].asm
+nasm [name2].asm
+cat [name1] [name2] >> [floppy_file].flp
