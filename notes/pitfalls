@@ -11,5 +11,20 @@ Fourth pitfall:
 times 512-($-$$) ... only works for the bootsector (510 for the BS really), in order to pad to 1k must do "times 1024-($-$$)" (This only applies when doing more than the boot loader in one file
 
 Fifth pitfall:
-ax needs to hold the video buffer. I was blowing it away.
+WRONG WRONG WRONG! ax needs to hold the video buffer. I was blowing it away. WRONG WRONG WRONG!
+--------
+mov ah, 0x02 	;The Read sectors interrupt option.
+mov al, 0x01	;The number of sectors to read
+
+...
+...
+
+mov ax, 0x1000 	;The place we want to far jump to
+mov es, ax 	;ES now contains the first part of our 16:16 address
+mov bx, 0	;BX contains the second part
+int 0x13
+--------
+What's wrong with this picture? AX is AH and AL. AH and AL are getting set up first of all, then reset to 0x0000 and 0x1000 respectively.
+
+Move the first assignment after the second or don't do the second.
 
